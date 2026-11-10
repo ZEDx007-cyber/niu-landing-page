@@ -12,7 +12,9 @@ A responsive front-end web application and student information portal designed f
 
 ## 🌐 Live Demo
 
-🔗 **[View Live Demo]///D:/Codes/niu.html/index.html)**
+🔗 **[View Live Demo](https://zedx007-cyber.github.io/niu-web-portal/)**
+
+*(Note: Ensure `index.html` is uploaded to the root of your repository and GitHub Pages is enabled in Settings → Pages for this link to go live.)*
 
 ---
 
@@ -47,8 +49,8 @@ niu-web-portal/
 │   ├── js/
 │   │   └── script.js   # Interactive UI logic and form validation
 │   └── images/         # Campus photos, logos, and icons
+├── LICENSE             # MIT License
 └── README.md           # Project documentation
-
 ```
 
 ---
@@ -58,30 +60,21 @@ niu-web-portal/
 Follow these steps to run the project locally on your machine:
 
 ### Prerequisites
-
 Any modern web browser (Chrome, Edge, Firefox) and a code editor like **VS Code** (with the *Live Server* extension recommended).
 
 ### Installation
 
 1. **Clone the repository:**
-```bash
-git clone [https://github.com/your-username/niu-web-portal.git](https://github.com/your-username/niu-web-portal.git)
-
-```
-
-
+   ```bash
+   git clone [https://github.com/ZEDx007-cyber/niu-web-portal.git](https://github.com/ZEDx007-cyber/niu-web-portal.git)
+   ```
 2. **Navigate to the project directory:**
-```bash
-cd niu-web-portal
-
-```
-
-
+   ```bash
+   cd niu-web-portal
+   ```
 3. **Launch the project:**
-* Open `index.html` directly in your browser, **or**
-* Right-click `index.html` in VS Code and select **Open with Live Server**.
-
-
+   * Open `index.html` directly in your browser, **or**
+   * Right-click `index.html` in VS Code and select **Open with Live Server**.
 
 ---
 
@@ -91,7 +84,6 @@ cd niu-web-portal
 
 ```markdown
 ![Homepage Preview](./assets/images/homepage-preview.png)
-
 ```
 
 ---
@@ -108,20 +100,14 @@ cd niu-web-portal
 ## 👤 Author
 
 **Ishan Kundu**
-
-* GitHub: @your-username
+* GitHub: [@ZEDx007-cyber](https://github.com/ZEDx007-cyber)
 
 ---
 
 ## 📄 License
 
-This project is created for educational and portfolio purposes. Distributed under the MIT License.
+This project is created for educational and portfolio purposes. Distributed under the [MIT License](LICENSE).
 
 ```
 
-<ElicitationsGroup message="Once your repository is set up, here are a few ways to polish it:">
-  <Elicitation label="Deploy the site for free using GitHub Pages" query="How do I host and deploy this repository for free using GitHub Pages?"/>
-  <Elicitation label="Terminal commands to push local code to GitHub" query="Give me the exact Git commands to push my local project files to this new GitHub repository."/>
-</ElicitationsGroup>
-
-```
+The Live Demo link is already pre-filled with your official GitHub Pages URL (`[https://zedx007-cyber.github.io/niu-web-portal/](https://zedx007-cyber.github.io/niu-web-portal/)`), so as soon as you upload your `index.html` file and turn on GitHub Pages in **Settings → Pages**, that button will automatically open your live site.
