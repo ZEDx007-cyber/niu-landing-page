@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noida International University | World Class Education</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        niu: {
+                            green: '#006838', /* Official Green */
+                            blue: '#005baa',  /* Official Blue */
+                            dark: '#1e293b',
+                            light: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom UI Elements */
+        .hero-bg {
+            background: linear-gradient(rgba(8, 83, 45, 0.7), rgba(0, 50, 100, 0.6)), url('https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1986&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #006838;
+            border-radius: 2px;
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Ticker */
+        .ticker-wrap {
+            width: 100%;
+            background-color: #006838;
+            overflow: hidden;
+            white-space: nowrap;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .ticker {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 35s linear infinite;
+        }
+        .ticker__item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 600;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 500px;
+        }
+        
+        .aspect-video {
+            aspect-ratio: 16 / 9;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-white antialiased">
+
+    <!-- Top Bar / Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker font-heading">
+            <div class="ticker__item">🏆 NAAC A+ ACCREDITED (3.44 Score)</div>
+            <div class="ticker__item">🚀 HIGHEST PLACEMENT ₹21 LPA</div>
+            <div class="ticker__item">🎓 ADMISSIONS OPEN</div>
+            <div class="ticker__item">🌍 STUDENTS FROM 60+ COUNTRIES</div>
+            <div class="ticker__item">🏥 750+ BEDDED NIIMS HOSPITAL ON CAMPUS</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="assets/niu-logo.png" alt="Noida International University logo" width="64" height="64" class="h-16 w-16 object-contain">
+                    <div class="hidden lg:block border-l-2 border-gray-300 pl-3">
+                        <h1 class="font-heading text-lg font-bold text-niu-dark leading-none">NOIDA INTERNATIONAL</h1>
+                        <p class="text-xs text-niu-green font-bold tracking-[0.2em]">UNIVERSITY</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Links -->
+                <div class="hidden md:flex space-x-8 items-center font-heading font-medium text-gray-600">
+                    <a href="#academics" class="hover:text-niu-green transition">Academics</a>
+                    <a href="#placements" class="hover:text-niu-green transition">Placements</a>
+                    <a href="#gallery" class="hover:text-niu-green transition">Campus Life</a>
+                    <a href="#reviews" class="hover:text-niu-green transition">Reviews</a>
+                    <a href="#inquiry" class="hover:text-niu-green transition">Inquire</a>
+                    <button onclick="openModal()" class="bg-gradient-to-r from-niu-green to-niu-blue text-white px-6 py-2 rounded-full font-bold shadow hover:shadow-lg transform hover:-translate-y-0.5 transition">
+                        Apply Now
+                    </button>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-btn" type="button" class="text-niu-green focus:outline-none" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t">
+            <a href="#academics" class="mobile-nav-link block py-3 px-4 hover:bg-gray-50 text-niu-green font-medium">Academics</a>
+            <a href="#placements" class="mobile-nav-link block py-3 px-4 hover:bg-gray-50 text-niu-green font-medium">Placements</a>
+            <a href="#gallery" class="mobile-nav-link block py-3 px-4 hover:bg-gray-50 text-niu-green font-medium">Campus Life</a>
+            <a href="#inquiry" class="mobile-nav-link block py-3 px-4 hover:bg-gray-50 text-niu-green font-medium">Inquire</a>
+            <button onclick="openModal()" class="w-full text-left py-4 px-4 bg-niu-green text-white font-bold">Apply Now</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-[85vh] flex items-center justify-center text-white text-center px-4 relative">
+        <div class="max-w-5xl mx-auto animate-fade-in-up">
+            <div class="inline-flex items-center bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-1 rounded-full mb-6">
+                <span class="bg-green-500 w-2 h-2 rounded-full mr-2 animate-pulse"></span>
+                <span class="text-sm font-bold tracking-wide uppercase">Admissions Open</span>
+            </div>
+            
+            <h1 class="font-heading text-4xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">
+                Empowering Minds,<br>Transforming <span class="text-green-400">Global Careers</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto font-light">
+                Join a 75-acre innovation hub with 12 world-class schools, 60+ international partnerships, and a legacy of excellence in Greater Noida.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-niu-green hover:bg-green-800 text-white px-8 py-4 rounded-lg font-bold text-lg shadow-xl transition flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Start Application
+                </button>
+                <button onclick="openVideoModal()" class="bg-white text-niu-dark hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg shadow-xl transition flex items-center justify-center gap-2">
+                    <i class="fas fa-play-circle text-niu-blue"></i> Campus Tour
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Stats Strip -->
+    <div class="bg-niu-dark text-white py-8 relative z-20 -mt-2 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-700">
+            <div>
+                <div class="text-3xl font-bold text-green-400 mb-1">75 Acres</div>
+                <div class="text-sm text-gray-400 uppercase tracking-wider">Green Campus</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-blue-400 mb-1">A+ Grade</div>
+                <div class="text-sm text-gray-400 uppercase tracking-wider">NAAC Accredited</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-green-400 mb-1">12+</div>
+                <div class="text-sm text-gray-400 uppercase tracking-wider">Specialized Schools</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-blue-400 mb-1">60+</div>
+                <div class="text-sm text-gray-400 uppercase tracking-wider">Global Partners</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Academics Section -->
+    <section id="academics" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-niu-dark section-title">Our Academic Schools</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">NIU offers multidisciplinary programs designed to meet industry standards and foster research innovation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Engineering -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-niu-blue card-hover group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-niu-blue"><i class="fas fa-laptop-code text-xl"></i></div>
+                        <h3 class="text-xl font-bold text-gray-800">School of Engineering & Technology</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>B.Tech (CSE, AI/ML, Civil, Mech)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>BCA & MCA (Cloud Computing)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>M.Tech (Research Focused)</li>
+                    </ul>
+                    <a href="#inquiry" data-inquiry-course="Engineering & Technology" data-inquiry-message="Please share Engineering and Technology program details." class="text-niu-blue font-bold text-sm hover:underline">Ask about programs &rarr;</a>
+                </div>
+
+                <!-- Business -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-niu-green card-hover group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-niu-green"><i class="fas fa-chart-pie text-xl"></i></div>
+                        <h3 class="text-xl font-bold text-gray-800">School of Business & Management</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>MBA (Dual Specialization)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>BBA (Industry Integrated)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>B.Com (Hons)</li>
+                    </ul>
+                    <a href="#inquiry" data-inquiry-course="Business & Management" data-inquiry-message="Please share Business and Management program details." class="text-niu-green font-bold text-sm hover:underline">Ask about programs &rarr;</a>
+                </div>
+
+                <!-- Medical -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-red-500 card-hover group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-500"><i class="fas fa-user-md text-xl"></i></div>
+                        <h3 class="text-xl font-bold text-gray-800">Medical & Allied Health</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>MBBS (via NIIMS)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Nursing (B.Sc, GNM)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Physiotherapy (BPT, MPT)</li>
+                    </ul>
+                    <a href="#inquiry" data-inquiry-course="Medical & Allied Health" data-inquiry-message="Please share Medical and Allied Health program details." class="text-red-600 font-bold text-sm hover:underline">Ask about programs &rarr;</a>
+                </div>
+
+                <!-- Law -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-purple-600 card-hover group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center text-purple-600"><i class="fas fa-gavel text-xl"></i></div>
+                        <h3 class="text-xl font-bold text-gray-800">School of Law</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>BA LL.B (Hons)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>BBA LL.B (Hons)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>LL.M (Criminal/Corporate)</li>
+                    </ul>
+                    <a href="#inquiry" data-inquiry-course="Law" data-inquiry-message="Please share Law program details." class="text-purple-600 font-bold text-sm hover:underline">Ask about programs &rarr;</a>
+                </div>
+
+                <!-- Journalism -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-yellow-500 card-hover group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600"><i class="fas fa-microphone text-xl"></i></div>
+                        <h3 class="text-xl font-bold text-gray-800">Journalism & Media</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>BA (Journalism & Mass Comm)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>MA (JMC)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Digital Media Production</li>
+                    </ul>
+                    <a href="#inquiry" data-inquiry-course="Journalism & Media" data-inquiry-message="Please share Journalism and Media program details." class="text-yellow-600 font-bold text-sm hover:underline">Ask about programs &rarr;</a>
+                </div>
+
+                <!-- Design -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-pink-500 card-hover group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-500"><i class="fas fa-palette text-xl"></i></div>
+                        <h3 class="text-xl font-bold text-gray-800">Fine Arts & Design</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>BFA & MFA</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Interior Design</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Fashion Design</li>
+                    </ul>
+                    <a href="#inquiry" data-inquiry-course="Fine Arts & Design" data-inquiry-message="Please share Fine Arts and Design program details." class="text-pink-600 font-bold text-sm hover:underline">Ask about programs &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Placement Section -->
+    <section id="placements" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-niu-dark mb-6">Unbeatable <span class="text-niu-green">Career Success</span></h2>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        The Corporate Resource Center (CRC) at NIU bridges the gap between industry and academia. With a focus on personality development and technical skills, our students are preferred by top MNCs.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="p-4 bg-green-50 rounded-lg border border-green-100">
+                            <div class="text-3xl font-bold text-niu-green">₹21 LPA</div>
+                            <div class="text-sm text-gray-600">Highest Package</div>
+                        </div>
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                            <div class="text-3xl font-bold text-niu-blue">100%</div>
+                            <div class="text-sm text-gray-600">Placement Assistance</div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="text-3xl font-bold text-gray-800">500+</div>
+                            <div class="text-sm text-gray-600">Recruiters Visited</div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="text-3xl font-bold text-gray-800">₹5.5 LPA</div>
+                            <div class="text-sm text-gray-600">Average Package</div>
+                        </div>
+                    </div>
+                    <a href="#inquiry" data-inquiry-course="Placement report" data-inquiry-message="Please share the latest placement report." class="inline-block bg-niu-dark text-white px-6 py-3 rounded font-bold hover:bg-black transition">Request Placement Report</a>
+                </div>
+                
+                <div class="w-full lg:w-1/2">
+                    <h3 class="text-xl font-bold mb-6 text-gray-700">Our Top Recruiters</h3>
+                    <div class="grid grid-cols-3 gap-4 opacity-80">
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-gray-500">TCS</span></div>
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-blue-600">Wipro</span></div>
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-blue-800">IBM</span></div>
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-orange-600">HCL</span></div>
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-blue-900">Paytm</span></div>
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-red-600">Max</span></div>
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-gray-800">Genpact</span></div>
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-green-600">Apollo</span></div>
+                        <div class="h-20 border rounded flex items-center justify-center hover:shadow-md transition"><span class="font-bold text-xl text-indigo-600">Byjus</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event & Gallery Section (New Request) -->
+    <section id="gallery" class="py-20 bg-niu-light">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-niu-dark section-title">Campus Life & Events</h2>
+                    <p class="text-gray-600 mt-4">From "Rubaru" Fresher's Fest to International Conferences, life at NIU is vibrant.</p>
+                </div>
+                <button onclick="openVideoModal()" class="mt-4 md:mt-0 text-niu-green font-bold border-b-2 border-niu-green hover:text-niu-blue transition">View Video Gallery</button>
+            </div>
+
+            <!-- Masonry-ish Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[600px]">
+                <!-- Main Event Video Thumbnail -->
+                <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl cursor-pointer shadow-lg" onclick="openVideoModal()">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=2070&auto=format&fit=crop" alt="NIU Convocation" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition flex items-center justify-center">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center pl-1 shadow-xl group-hover:scale-110 transition">
+                            <i class="fas fa-play text-2xl text-niu-green"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white bg-gradient-to-t from-black/80 to-transparent w-full">
+                        <h3 class="font-bold text-2xl">Convocation Ceremony</h3>
+                        <p class="text-sm opacity-90">Celebrating academic excellence</p>
+                    </div>
+                </div>
+
+                <!-- Photo 1: Cultural -->
+                <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" alt="Rubaru Fest" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-black/80 to-transparent text-white">
+                        <h4 class="font-bold">Rubaru Cultural Fest</h4>
+                    </div>
+                </div>
+
+                <!-- Photo 2: Sports -->
+                <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop" alt="Sports Day" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-black/80 to-transparent text-white">
+                        <h4 class="font-bold">Annual Sports Meet</h4>
+                    </div>
+                </div>
+
+                <!-- Photo 3: Labs -->
+                <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop" alt="Labs" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-black/80 to-transparent text-white">
+                        <h4 class="font-bold">High-Tech Labs</h4>
+                    </div>
+                </div>
+
+                <!-- Photo 4: Hospital -->
+                <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop" alt="NIIMS Hospital" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-black/80 to-transparent text-white">
+                        <h4 class="font-bold">NIIMS Hospital</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inquiry -->
+    <section id="inquiry" class="py-20 bg-niu-light">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-niu-dark section-title">Make an Inquiry</h2>
+                <p class="text-gray-600 mt-4">Your request is saved locally on this computer; it is not automatically sent to the university.</p>
+            </div>
+            <form id="inquiry-form" class="bg-white rounded-xl shadow-lg p-6 md:p-8 space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div><label for="inquiry-name" class="block text-sm font-bold text-gray-700 mb-1">Full name</label><input id="inquiry-name" name="name" type="text" autocomplete="name" required class="block w-full border border-gray-300 rounded-md p-3 focus:ring-niu-green focus:border-niu-green"></div>
+                    <div><label for="inquiry-email" class="block text-sm font-bold text-gray-700 mb-1">Email</label><input id="inquiry-email" name="email" type="email" autocomplete="email" required class="block w-full border border-gray-300 rounded-md p-3 focus:ring-niu-green focus:border-niu-green"></div>
+                    <div><label for="inquiry-phone" class="block text-sm font-bold text-gray-700 mb-1">Phone</label><input id="inquiry-phone" name="phone" type="tel" autocomplete="tel" required class="block w-full border border-gray-300 rounded-md p-3 focus:ring-niu-green focus:border-niu-green"></div>
+                    <div><label for="inquiry-course" class="block text-sm font-bold text-gray-700 mb-1">Course of interest</label><input id="inquiry-course" name="course" type="text" required class="block w-full border border-gray-300 rounded-md p-3 focus:ring-niu-green focus:border-niu-green"></div>
+                </div>
+                <div><label for="inquiry-message" class="block text-sm font-bold text-gray-700 mb-1">Your question</label><textarea id="inquiry-message" name="message" rows="4" required class="block w-full border border-gray-300 rounded-md p-3 focus:ring-niu-green focus:border-niu-green"></textarea></div>
+                <p class="form-status text-sm" role="status" aria-live="polite"></p>
+                <button type="submit" class="bg-niu-green hover:bg-green-800 text-white px-6 py-3 rounded-lg font-bold transition">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center text-niu-dark mb-12 section-title">Student Reviews</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- R1 -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"The 75-acre campus is breathtaking. I completed my B.Tech here and the international exposure helped me secure a job at Wipro. The faculty is very supportive."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-niu-blue rounded-full flex items-center justify-center text-white font-bold">A</div>
+                        <div>
+                            <h4 class="font-bold text-sm">Anurag P.</h4>
+                            <p class="text-xs text-gray-500">B.Tech CSE (2023)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- R2 -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"NIIMS hospital on campus is a huge advantage for medical students. Practical exposure starts from day one. Hostel facilities are also top-notch."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-niu-green rounded-full flex items-center justify-center text-white font-bold">S</div>
+                        <div>
+                            <h4 class="font-bold text-sm">Sneha Gupta</h4>
+                            <p class="text-xs text-gray-500">MBBS Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- R3 -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Great infrastructure for Law students. The moot court sessions are very realistic. Placement cell is active and brings good firms."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">R</div>
+                        <div>
+                            <h4 class="font-bold text-sm">Rahul Verma</h4>
+                            <p class="text-xs text-gray-500">BA LL.B (2024)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-niu-dark text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <img src="assets/niu-logo.png" alt="Noida International University logo" width="64" height="64" class="h-16 w-16 object-contain bg-white p-1 rounded mb-4">
+                    <p class="text-gray-400 text-sm">
+                        Noida International University is a UGC recognized World Class University, committed to providing quality education and fostering research and innovation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#inquiry" class="hover:text-niu-green">Admissions</a></li>
+                        <li><a href="#inquiry" data-inquiry-course="Fee structure" data-inquiry-message="Please share the current fee structure." class="hover:text-niu-green">Fee Structure</a></li>
+                        <li><a href="#inquiry" data-inquiry-course="Scholarships" data-inquiry-message="Please share scholarship eligibility and application details." class="hover:text-niu-green">Scholarships</a></li>
+                        <li><a href="https://niu.edu.in/anti-ragging/" target="_blank" rel="noopener noreferrer" class="hover:text-niu-green">Anti-Ragging Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><i class="fas fa-map-marker-alt mr-2 text-niu-green"></i> Plot 1, Sector-17 A, Yamuna Expressway, Gautam Budh Nagar, UP</li>
+                        <li><i class="fas fa-phone mr-2 text-niu-green"></i><a href="tel:+918745862200" class="hover:text-white">+91 87458 62200</a></li>
+                        <li><i class="fas fa-envelope mr-2 text-niu-green"></i><a href="mailto:admissions@niu.edu.in" class="hover:text-white">admissions@niu.edu.in</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Location</h4>
+                    <div class="w-full h-48 rounded overflow-hidden bg-gray-800">
+                         <iframe title="Noida International University on Google Maps" src="https://www.google.com/maps?q=Noida+International+University%2C+Greater+Noida&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Noida%20International%20University%2C%20Greater%20Noida" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-sm text-green-300 hover:text-white underline">Open location in Google Maps</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; <span id="current-year"></span> Noida International University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Modal -->
+    <div id="modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
+                <div class="bg-niu-green px-4 py-4 sm:px-6 flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-white" id="modal-title">Apply to NIU</h3>
+                    <button onclick="closeModal()" class="text-white hover:text-gray-200"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="px-6 py-6">
+                    <form id="application-form" class="space-y-4">
+                        <div>
+                            <label for="application-name" class="block text-sm font-bold text-gray-700">Name</label>
+                            <input id="application-name" name="name" type="text" autocomplete="name" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-niu-green focus:border-niu-green">
+                        </div>
+                        <div>
+                            <label for="application-email" class="block text-sm font-bold text-gray-700">Email</label>
+                            <input id="application-email" name="email" type="email" autocomplete="email" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-niu-green focus:border-niu-green">
+                        </div>
+                        <div>
+                            <label for="application-phone" class="block text-sm font-bold text-gray-700">Phone</label>
+                            <input id="application-phone" name="phone" type="tel" autocomplete="tel" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-niu-green focus:border-niu-green">
+                        </div>
+                        <div>
+                            <label for="application-course" class="block text-sm font-bold text-gray-700">Course</label>
+                            <select id="application-course" name="course" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-niu-green focus:border-niu-green">
+                                <option value="">Select a course</option>
+                                <option>B.Tech</option>
+                                <option>MBA</option>
+                                <option>MBBS</option>
+                                <option>Law</option>
+                            </select>
+                        </div>
+                        <p class="form-status text-sm" role="status" aria-live="polite"></p>
+                        <button type="submit" class="w-full bg-niu-green text-white font-bold py-2 rounded hover:bg-green-700 transition">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-90 backdrop-blur-sm" onclick="closeVideoModal()">
+        <div class="w-full max-w-4xl p-4 relative" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" class="absolute -top-10 right-0 text-white text-lg font-bold hover:text-niu-green"><i class="fas fa-times-circle text-2xl"></i> Close</button>
+            <div class="aspect-video bg-black rounded-lg overflow-hidden shadow-2xl border border-gray-700">
+                <iframe id="campus-video" width="100%" height="100%" data-src="https://www.youtube.com/embed/27irukpHqxE?autoplay=1&amp;rel=0" title="Noida International University campus tour on YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <a href="https://www.youtube.com/watch?v=27irukpHqxE" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-white underline hover:text-green-300">Watch this campus tour on YouTube</a>
+        </div>
+    </div>
+
+    <button id="back-to-top" type="button" aria-label="Back to top" class="hidden fixed bottom-6 right-6 z-40 h-12 w-12 rounded-full bg-niu-green text-white shadow-lg transition hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+    <script src="app.js"></script>
+</body>
+</html>
