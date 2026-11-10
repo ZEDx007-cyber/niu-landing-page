@@ -12,7 +12,7 @@ A responsive front-end web application and student information portal designed f
 
 ## 🌐 Live Demo
 
-🔗 **[View Live Demo]///D:/Codes/niu.html/main.html)** *(Replace `#` with your GitHub Pages, Vercel, or Netlify deployment link)*
+🔗 **[View Live Demo]///D:/Codes/niu.html/index.html)**
 
 ---
 
