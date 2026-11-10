@@ -1,3 +1,5 @@
+<img width="600" height="600" alt="niu-logo" src="https://github.com/user-attachments/assets/965669df-0ff9-4f7c-bd85-34441b3d4543" />
+
 ```markdown
 # 🎓 Noida International University (NIU) — Web Portal
 
