@@ -12,9 +12,7 @@ A responsive front-end web application and student information portal designed f
 
 ## 🌐 Live Demo
 
-🔗 **[View Live Demo](https://zedx007-cyber.github.io/niu-web-portal/)**
-
-*(Note: Ensure `index.html` is uploaded to the root of your repository and GitHub Pages is enabled in Settings → Pages for this link to go live.)*
+🔗 **[View Live Demo](file:///D:/Codes/niu.html/main.html)**
 
 ---
 
